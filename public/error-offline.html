@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>No Internet • Uni Pass</title>
+<script src="/assets/js/route-guard.js"></script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{
+ margin:0;height:100vh;display:grid;place-items:center;
+ background:linear-gradient(135deg,#0b0f2a,#02040f);
+ color:#fff
+}
+.card{
+ width:min(520px,94%);padding:2.2rem;border-radius:18px;
+ background:rgba(255,255,255,.05);backdrop-filter:blur(14px);
+ box-shadow:0 25px 70px rgba(0,0,0,.65);text-align:center
+}
+h1{font-size:2.2rem;margin:0;color:#fbbf24}
+p{color:#bbb;font-size:.9rem;margin:1rem 0 1.8rem}
+button{
+ padding:.8rem 1.6rem;border-radius:10px;border:none;
+ background:#fbbf24;color:#000;font-weight:600;cursor:pointer
+}
+.small{margin-top:1.2rem;font-size:.75rem;color:#888}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>No Internet Connection</h1>
+  <p>
+    Uni Pass requires an active internet connection.<br>
+    Please check your network and try again.
+  </p>
+
+  <button onclick="retry()">Retry</button>
+
+  <div class="small">
+    If the problem persists:<br>
+    • Check Wi-Fi / mobile data<br>
+    • Disable VPN or proxy<br>
+    • Contact system admin
+  </div>
+</div>
+
+<script>
+function retry(){
+ if(navigator.onLine){
+   location.replace("login.html")
+ }else{
+   alert("Still offline")
+ }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Access Denied • Uni Pass</title>
+<script src="/assets/js/route-guard.js"></script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{
+ margin:0;height:100vh;display:grid;place-items:center;
+ background:radial-gradient(circle at top,#1b1f3b,#06070f);
+ color:#fff
+}
+.card{
+ width:min(520px,94%);padding:2.2rem;border-radius:18px;
+ background:rgba(255,255,255,.06);backdrop-filter:blur(14px);
+ box-shadow:0 25px 70px rgba(0,0,0,.6);text-align:center
+}
+h1{font-size:3rem;margin:0;color:#ff6b6b}
+h2{margin:.4rem 0;font-size:1.3rem}
+p{color:#bbb;font-size:.9rem;margin:.8rem 0 1.6rem}
+button{
+ padding:.8rem 1.4rem;border-radius:10px;border:none;
+ background:#7aa2ff;color:#000;font-weight:600;cursor:pointer
+}
+.small{margin-top:1.2rem;font-size:.75rem;color:#888}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>404</h1>
+  <h2>Access Restricted</h2>
+  <p>
+    You tried to open a protected page directly.<br>
+    Authentication or permission was missing.
+  </p>
+
+  <button onclick="goLogin()">Go to Login</button>
+
+  <div class="small">
+    Reason codes may include:<br>
+    • Not logged in<br>
+    • Session expired<br>
+    • Insufficient privileges
+  </div>
+</div>
+
+<script>
+function goLogin(){
+ sessionStorage.clear()
+ location.replace("login.html")
+}
+</script>
+</body>
+</html>
