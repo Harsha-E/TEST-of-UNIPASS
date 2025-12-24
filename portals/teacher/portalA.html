@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uni Pass • Teacher</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="/assets/js/route-guard.js"></script>
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#0b0f2a;color:#fff}
+nav{
+ padding:1rem 1.4rem;display:flex;gap:1.2rem;
+ background:rgba(0,0,0,.4);backdrop-filter:blur(10px)
+}
+nav a{color:#9db5ff;text-decoration:none;font-size:.9rem}
+nav a.active{color:#fff;font-weight:600}
+.container{padding:1.6rem}
+.card{
+ background:rgba(255,255,255,.06);border-radius:14px;
+ padding:1.4rem;margin-bottom:1.4rem
+}
+h2{margin:.2rem 0 1rem;font-size:1.15rem}
+input,textarea,button{
+ width:100%;margin:.4rem 0;padding:.7rem;
+ border-radius:8px;border:1px solid rgba(255,255,255,.2);
+ background:transparent;color:#fff
+}
+button{background:#7aa2ff;color:#000;font-weight:600;border:none}
+.req{border-bottom:1px solid rgba(255,255,255,.08);padding:.6rem 0}
+.req small{color:#aaa}
+.actions button{
+ width:auto;margin-right:.4rem;padding:.4rem .7rem;font-size:.75rem
+}
+.accept{background:#6ee7b7}
+.reject{background:#ff9d9d}
+</style>
+</head>
+
+<body>
+<nav>
+  <a class="active">Portal A</a>
+  <a href="../teacher/portalC.html">Portal C</a>
+</nav>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Send Request to HOD</h2>
+    <input placeholder="Reason">
+    <textarea rows="3" placeholder="Description"></textarea>
+    <button>Send Request</button>
+  </div>
+
+  <div class="card">
+    <h2>Student Requests</h2>
+    <div class="req">
+      Student: 24331A4228<br>
+      <small>Lab Permission</small>
+      <div class="actions">
+        <button class="accept">Approve</button>
+        <button class="reject">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>History / Sent</h2>
+    <div class="req">
+      Request to HOD • <small>Pending</small>
+    </div>
+    <div class="req">
+      Student Request • <small>Approved</small>
+    </div>
+  </div>
+
+</div>
+<div class="stepper">
+  <div class="step active" id="s1">Requested</div>
+  <div class="step" id="s2">Teacher Approved</div>
+  <div class="step" id="s3">HOD Approved</div>
+</div>
+
+<style>
+.stepper{display:flex;gap:1rem;margin:1rem 0}
+.step{
+ flex:1;padding:.6rem;border-radius:8px;
+ text-align:center;font-size:.8rem;
+ background:#1f2937;color:#9ca3af
+}
+.step.active{background:#2563eb;color:#fff}
+.step.done{background:#16a34a;color:#fff}
+</style>
+
+
+<script>
+sessionStorage.setItem("role","teacher")
+</script>
+</body>
+</html>
