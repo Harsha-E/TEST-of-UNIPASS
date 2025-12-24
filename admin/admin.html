@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uni Pass • Admin</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="/assets/js/route-guard.js"></script>
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#0b0f2a;color:#fff}
+nav{
+ padding:1rem 1.4rem;display:flex;justify-content:space-between;
+ background:rgba(0,0,0,.45);backdrop-filter:blur(12px)
+}
+nav span{font-weight:700}
+nav button{
+ background:#ff9d9d;border:none;border-radius:8px;
+ padding:.4rem .8rem;font-weight:600;cursor:pointer
+}
+.container{padding:1.6rem}
+.card{
+ background:rgba(255,255,255,.06);border-radius:14px;
+ padding:1.4rem;margin-bottom:1.4rem
+}
+h2{margin:.2rem 0 1rem;font-size:1.15rem}
+input,select,button{
+ width:100%;margin:.4rem 0;padding:.7rem;
+ border-radius:8px;border:1px solid rgba(255,255,255,.2);
+ background:transparent;color:#fff
+}
+button.primary{background:#7aa2ff;color:#000;font-weight:600;border:none}
+button.small{width:auto;padding:.4rem .7rem;font-size:.75rem}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+td,th{
+ border-bottom:1px solid rgba(255,255,255,.1);
+ padding:.5rem;text-align:left
+}
+th{color:#9db5ff;font-weight:500}
+.badge{font-size:.7rem;padding:.2rem .5rem;border-radius:6px}
+.student{background:#60a5fa}
+.teacher{background:#34d399}
+.hod{background:#fbbf24;color:#000}
+.pending{background:#ff9d9d;color:#000}
+</style>
+</head>
+
+<body>
+<nav>
+  <span>Admin Control • Uni Pass</span>
+  <button onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Add User (Manual)</h2>
+    <input placeholder="Email / ID">
+    <select>
+      <option>Student</option>
+      <option>Teacher</option>
+      <option>HOD</option>
+      <option>Admin</option>
+    </select>
+    <button class="primary">Add User</button>
+  </div>
+
+  <div class="card">
+    <h2>Bulk Upload Users</h2>
+    <input type="file" accept=".csv,.xls,.xlsx">
+    <button class="primary">Upload & Process</button>
+  </div>
+
+  <div class="card">
+    <h2>Pending Whitelist Requests</h2>
+    <table>
+      <tr><th>User</th><th>Role</th><th>Status</th><th>Action</th></tr>
+      <tr>
+        <td>24331A4228</td>
+        <td><span class="badge student">Student</span></td>
+        <td><span class="badge pending">Pending</span></td>
+        <td>
+          <button class="small">Approve</button>
+          <button class="small">Reject</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>System Overview</h2>
+    <table>
+      <tr><th>Category</th><th>Count</th></tr>
+      <tr><td>Students</td><td>1240</td></tr>
+      <tr><td>Teachers</td><td>84</td></tr>
+      <tr><td>HODs</td><td>6</td></tr>
+      <tr><td>Admins</td><td>2</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<script>
+sessionStorage.setItem("role","admin")
+function logout(){
+ sessionStorage.clear()
+ location.replace("/public/login.html")
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script type="module" src="/assets/js/admin-bulk-upload.js"></script>
+</body>
+</html>
