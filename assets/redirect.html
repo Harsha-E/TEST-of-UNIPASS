@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting • Uni Pass</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Global styles (optional minimal loader styles live in CSS) -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="redirect-page">
+
+  <main class="redirect-container">
+    <p>Verifying access…</p>
+  </main>
+
+  <script type="module">
+    // TODO: replace mock logic with Firebase Auth + Firestore lookup
+
+    const loggedIn = sessionStorage.getItem("loggedIn") === "true";
+    const identity = sessionStorage.getItem("identity");
+
+    if (!loggedIn || !identity) {
+      location.replace("/public/login.html");
+      return;
+    }
+
+    /*
+      Expected (later, from Firestore):
+      {
+        role: "student" | "teacher" | "hod" | "admin",
+        approved: true | false,
+        disabled: true | false,
+        firstLogin: true | false
+      }
+    */
+
+    // MOCK POLICY RESULT (temporary)
+    const policy = {
+      role: sessionStorage.getItem("role"), // set after real lookup later
+      approved: true,
+      disabled: false,
+      firstLogin: sessionStorage.getItem("firstLogin") === "true"
+    };
+
+    if (policy.disabled) {
+      location.replace("/public/error-404.html");
+      return;
+    }
+
+    if (!policy.approved) {
+      location.replace("/public/error-404.html");
+      return;
+    }
+
+    if (policy.firstLogin) {
+      location.replace("/public/reset-password.html");
+      return;
+    }
+
+    switch (policy.role) {
+      case "student":
+        location.replace("/portals/student/portalA.html");
+        break;
+      case "teacher":
+        location.replace("/portals/teacher/portalA.html");
+        break;
+      case "hod":
+        location.replace("/portals/hod/portalA.html");
+        break;
+      case "admin":
+        location.replace("/admin/admin.html");
+        break;
+      default:
+        location.replace("/public/error-404.html");
+    }
+  </script>
+
+</body>
+</html>
