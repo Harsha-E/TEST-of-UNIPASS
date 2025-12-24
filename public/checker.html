@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uni Pass • Checker</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#0b0f2a;color:#fff}
+nav{
+ padding:1rem 1.4rem;display:flex;justify-content:space-between;
+ background:rgba(0,0,0,.45);backdrop-filter:blur(10px)
+}
+nav span{font-weight:700}
+nav a{color:#9db5ff;text-decoration:none;font-size:.85rem}
+.container{
+ height:calc(100vh - 64px);display:grid;place-items:center
+}
+.card{
+ width:min(460px,92%);padding:2rem;border-radius:16px;
+ background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
+ box-shadow:0 20px 50px rgba(0,0,0,.45);text-align:center
+}
+input{
+ width:100%;padding:.9rem;border-radius:10px;
+ border:1px solid rgba(255,255,255,.2);
+ background:transparent;color:#fff;font-size:.95rem
+}
+button{
+ margin-top:1rem;width:100%;padding:.9rem;border-radius:10px;
+ border:none;background:#6ee7b7;color:#000;font-weight:600;cursor:pointer
+}
+.result{margin-top:1rem;font-size:.85rem;display:none}
+.valid{color:#7dffb3}
+.invalid{color:#ff9d9d}
+.small{margin-top:1.2rem;font-size:.7rem;color:#888}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <span>Uni Pass • Checker</span>
+  <a href="login.html">Login Portal</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h2>Verify Permission</h2>
+    <input id="pid" placeholder="Enter Permission / Hash ID">
+    <button onclick="check()">Check</button>
+
+    <div class="result" id="res"></div>
+    <div class="small">
+      No login required • Read-only access
+    </div>
+  </div>
+</div>
+
+<script>
+function check(){
+ const id=document.getElementById("pid").value.trim()
+ const r=document.getElementById("res")
+ if(!id){
+   r.style.display="block"
+   r.className="result invalid"
+   r.textContent="Please enter a valid ID"
+   return
+ }
+
+ // Placeholder (Firebase lookup later)
+ if(id.length>=8){
+   r.style.display="block"
+   r.className="result valid"
+   r.textContent="✔ Permission is valid"
+ }else{
+   r.style.display="block"
+   r.className="result invalid"
+   r.textContent="✖ Invalid / expired permission"
+ }
+}
+</script>
+
+</body>
+</html>
+    
